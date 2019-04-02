@@ -1,0 +1,218 @@
+<div id="myPopover" class="input-group" (click)="isDateTimePickerVisible = true;clickInside($event)">
+	<input type="text" *ngIf="firstDay && lastDay" disabled class="form-control cursor-pointer" placeholder="{{formatFirstDate()}} - {{formatLastDate()}}" aria-label="date range" aria-describedby="button-openCalendar">
+	<input type="text" *ngIf="!firstDay || !lastDay" disabled class="form-control cursor-pointer" placeholder="No Date Range Selected" aria-label="no date range selected" aria-describedby="button-openCalendar">
+	<div class="input-group-append">
+		<button class="btn btn-outline-secondary right-radius" type="button" id="button-openCalendar">
+			<fa-icon [inverse]="false" [icon]="['fas', 'calendar-alt']"></fa-icon>
+		</button>
+	</div>
+	<div *ngIf="isDateTimePickerVisible" class="date-time-picker-container">
+		<div *ngIf="displayStartHours || displayEndHours" class="mt-5">
+			<div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(1)">
+					01
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(2)">
+					02
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(3)">
+					03
+				</div>
+			</div>
+			<div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(4)">
+					04
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(5)">
+					05
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(6)">
+					06
+				</div>
+			</div>
+			<div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(7)">
+					07
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(8)">
+					08
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(9)">
+					09
+				</div>
+			</div>
+			<div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(10)">
+					10
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(11)">
+					11
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setHour(12)">
+					12
+				</div>
+			</div>
+		</div>
+		<div *ngIf="displayStartMinutes || displayEndMinutes" class="mt-5">
+			<div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(0)">
+					00
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(5)">
+					05
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(10)">
+					10
+				</div>
+			</div>
+			<div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(15)">
+					15
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(20)">
+					20
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(25)">
+					25
+				</div>
+			</div>
+			<div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(30)">
+					30
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(35)">
+					35
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(40)">
+					40
+				</div>
+			</div>
+			<div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(45)">
+					45
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(50)">
+					50
+				</div>
+				<div class="btn btn-secondary cursor-pointer m-2" (click)="setMinute(55)">
+					55
+				</div>
+			</div>
+		</div>
+		<button *ngIf="displayTime" class="btn btn-outline-secondary w-100 mb-3" (click)="changeDisplayedControls('days')">
+			<fa-icon [inverse]="false" [icon]="['fas', 'calendar-alt']" size="lg"></fa-icon>
+		</button>
+		<div *ngIf="displayTime" class="row mx-auto time-container">
+			<div class="col">
+				<p class="mb-0 mt-2">Start</p>
+				<div class="d-flex justify-content-center">
+					<span class="hour-minute-container mx-2">
+						<fa-icon [icon]="['fas', 'chevron-up']" (click)="increaseStartHour()" class="cursor-pointer toggle-time hover-black"></fa-icon>
+						<span (click)="changeDisplayedControls('starthours')" class="hover-black">
+							{{numberToDoubleDigitString(firstHour)}}
+						</span>
+						<fa-icon [icon]="['fas', 'chevron-down']" (click)="decreaseStartHour()" class="cursor-pointer toggle-time hover-black"></fa-icon>
+					</span>
+					<span class="hour-minute-container my-auto">
+						:
+					</span>
+					<span class="hour-minute-container mx-2">
+						<fa-icon [icon]="['fas', 'chevron-up']" (click)="increaseStartMinute()" class="cursor-pointer toggle-time hover-black"></fa-icon>
+						<span (click)="changeDisplayedControls('startminutes')" class="hover-black">
+							{{numberToDoubleDigitString(firstMinute)}}
+						</span>
+						<fa-icon [icon]="['fas', 'chevron-down']" (click)="decreaseStartMinute()" class="cursor-pointer toggle-time hover-black"></fa-icon>
+					</span>
+				</div>
+				<button type="button" *ngIf="displayAmStart" class="btn btn-outline-primary" (click)="displayAmStart = !displayAmStart;emitNewDate()">AM</button>
+				<button type="button" *ngIf="!displayAmStart" class="btn btn-outline-primary" (click)="displayAmStart = !displayAmStart;emitNewDate()">PM</button>
+			</div>
+			<div class="col">
+				<p class="mb-0 mt-2">End</p>
+				<div class="d-flex justify-content-center">
+					<span class="hour-minute-container mx-2">
+						<fa-icon [icon]="['fas', 'chevron-up']" (click)="increaseEndHour()" class="cursor-pointer toggle-time hover-black"></fa-icon>
+						<span (click)="changeDisplayedControls('endhours')" class="hover-black">
+							{{numberToDoubleDigitString(lastHour)}}
+						</span>
+						<fa-icon [icon]="['fas', 'chevron-down']" (click)="decreaseEndHour()" class="cursor-pointer toggle-time hover-black"></fa-icon>
+					</span>
+					<span class="hour-minute-container my-auto">
+						:
+					</span>
+					<span class="hour-minute-container mx-2">
+						<fa-icon [icon]="['fas', 'chevron-up']" (click)="increaseEndMinute()" class="cursor-pointer toggle-time hover-black"></fa-icon>
+						<span (click)="changeDisplayedControls('endminutes')" class="hover-black">
+							{{numberToDoubleDigitString(lastMinute)}}
+						</span>
+						<fa-icon [icon]="['fas', 'chevron-down']" (click)="decreaseEndMinute()" class="cursor-pointer toggle-time hover-black"></fa-icon>
+					</span>
+				</div>
+				<button type="button" *ngIf="displayAmEnd" class="btn btn-outline-primary" (click)="displayAmEnd = !displayAmEnd;emitNewDate()">AM</button>
+				<button type="button" *ngIf="!displayAmEnd" class="btn btn-outline-primary" (click)="displayAmEnd = !displayAmEnd;emitNewDate()">PM</button>
+			</div>
+		</div>
+		<div *ngIf="displayDays" class="mx-auto">
+			<fa-icon [icon]="['fas', 'chevron-left']" (click)="navigateToPreviousMonth()" class="mr-3 cursor-pointer hover-black"></fa-icon>
+			<span class="month-label hover-black" (click)="changeDisplayedControls('months')">
+				{{monthList[month]}}, {{year}}
+			</span>
+			<fa-icon [icon]="['fas', 'chevron-right']" (click)="navigateToNextMonth()" class="ml-3 cursor-pointer hover-black"></fa-icon>
+		</div>
+		<div *ngIf="displayDays">
+			<div class="days-of-week-label">
+				<div *ngFor="let currentDay of dayList" class="day-of-week">
+					{{ currentDay }}
+				</div>
+			</div>
+			<div *ngFor="let currentDay of daysPerMonth" class="day-of-week numbered-day cursor-pointer" (click)="setDay(currentDay)" [ngClass]="{'active': isDayInThisMonth(currentDay), 'current-day bg-primary': isDayToday(currentDay), 'beginning-end-of-range': isStartDay(currentDay) || isEndDay(currentDay), 'day-in-range': isDayInRange(currentDay) || isDayInRangeButNotInMonth(currentDay)}">
+				{{ getDayForCalendar(currentDay) }}
+			</div>
+			<div class="d-flex h-100">
+				<div class="align-self-center mx-auto hover-black">
+					<fa-icon class="cursor-pointer" [icon]="['far', 'clock']" (click)="changeDisplayedControls('time')"></fa-icon>
+				</div>
+				<div class="pull-right">
+					<button type="button" class="btn btn-secondary btn-sm mr-2" (click)="goToToday()">Today</button>
+					<button type="button" class="btn btn-secondary btn-sm" (click)="clearRange()">Clear</button>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="displayMonths" class="d-flex h-100">
+			<div class="mx-auto">
+				<div class="mb-2 hover-black" (click)="changeDisplayedControls('years')">
+					{{ year }}
+				</div>
+				<div *ngFor="let currentMonth of monthAbreviatedList; index as i">
+					<div *ngIf="i % 3 == 0" class="row">
+						<div class="col d-flex align-items-center" (click)="setMonth(i)" [ngClass]="{'month': todaysMonth !== i, 'current-month': todaysMonth === i, 'selected-month': month === i }">
+							{{ currentMonth }}
+						</div>
+						<div class="col d-flex align-items-center" (click)="setMonth(i+1)" [ngClass]="{'month': todaysMonth !== i + 1, 'current-month': todaysMonth === i + 1, 'selected-month': month === i + 1 }" *ngIf="i + 1 < monthList.length">{{ monthAbreviatedList[i + 1] }}</div>
+						<div class="col d-flex align-items-center" (click)="setMonth(i+2)" [ngClass]="{'month': todaysMonth !== i + 2, 'current-month': todaysMonth === i + 2, 'selected-month': month === i + 2 }" *ngIf="i + 2 < monthList.length">{{ monthAbreviatedList[i + 2] }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="displayYears" class="d-flex h-100">
+			<div class="mx-auto">
+				<div class="mb-2">
+					<fa-icon [icon]="['fas', 'chevron-left']" (click)="navigateBackYearRange()" class="mr-3 cursor-pointer hover-black"></fa-icon>
+					<div class="btn btn-secondary btn-sm cursor-pointer" (click)="resetYearRange()">
+						Go To Current Year
+					</div>
+					<fa-icon [icon]="['fas', 'chevron-right']" (click)="navigateForwardYearRange()" class="ml-3 cursor-pointer hover-black"></fa-icon>
+				</div>
+				<div *ngFor="let currentYear of yearsRange; index as i">
+					<div *ngIf="i % 3 == 0" class="row">
+						<div class="col py-1 px-3 year" (click)="setYear(yearsRange[i])" [ngClass]="{'year': todaysYear !== yearsRange[i], 'current-year': todaysYear === yearsRange[i], 'selected-year': year === yearsRange[i] }">
+							{{ currentYear }}
+						</div>
+						<div class="col py-1 px-3 year" (click)="setYear(yearsRange[i] + 1)" [ngClass]="{'year': todaysYear !== yearsRange[i] + 1, 'current-year': todaysYear === yearsRange[i] + 1, 'selected-year': year === yearsRange[i] + 1 }" *ngIf="i + 1 < yearsRange[yearsRange.length - 1]">{{ yearsRange[i + 1] }}</div>
+						<div class="col py-1 px-3 year" (click)="setYear(yearsRange[i] + 2)" [ngClass]="{'year': todaysYear !== yearsRange[i] + 2, 'current-year': todaysYear === yearsRange[i] + 2, 'selected-year': year === yearsRange[i] + 2 }" *ngIf="i + 2 < yearsRange[yearsRange.length - 1]">{{ yearsRange[i + 2] }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

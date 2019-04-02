@@ -1,21 +1,82 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-6 form-group">
+			<label>Date & Time Range <small>Use local timezone</small></label>
+			<date-time-range-picker
+				[(startDate)]="startDate"
+				[(endDate)]="endDate">
+			</date-time-range-picker>
+		</div>
+		<div class="col-6 form-group">
+			Your selected start date is: {{startDate}}<br />
+			Your selected end date is: {{endDate}}
+		</div>
+	</div>
 
-<router-outlet></router-outlet>
+	<div class="row">
+		<div class="col-12">
+			Implementing this package is simple. Just place the following in your html:
+			<br />
+			&lt;lib-date-time-range-picker (onDatePicked)="setDateRange($event)" [startDate]="startDate" [endDate]="endDate"&gt;&lt;/lib-date-time-range-picker&gt;
+			<br /><br />
+
+			There are three attribute:
+			<ol>
+				<li>
+				(onDatePicked)="someFunction($event)
+					<ul>
+						<li>This function gets called when both dates are selected, and when one of the two dates change</li>
+						<li>The object passed into this function as two properties, startDate and endDate</li>
+						<li>
+							This function needs to be in your component class and will look something like:
+							<br />
+							<code ng-non-bindable>
+								public someFunction(dates: any): void {{ '{' }}<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;this.startDate = dates.startDate;<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;this.endDate = dates.endDate;<br />
+								{{ '}' }}
+							</code>
+						</li>
+					</ul>
+				</li>
+				<li>
+					[startDate]="componentVariableWithStartDate"
+					<ul>
+						<li>This can be an empty string initially, but when the date is emitted into the above function, it should get stored into a variable that goes into here. That way if you hide this component for some reason (like a loading icon), the dates will still be there when it displays again.</li>
+					</ul>
+				</li>
+				<li>
+					[endDate]="componentVariableWithEndDate"
+					<ul>
+						<li>Same as above</li>
+					</ul>
+				</li>
+			</ol>
+			<br />
+			Notes:
+			<ul>
+				<li>
+					The date returned is in UTC
+				</li>
+				<li>
+					If you provide a start date or end date, they need to be in UTC
+				</li>
+				<li>
+					The date the user selects is assumed to be in their local time and will be converted to UTC
+				</li>
+				<li>
+					If you have the momentjs package, you can format the returned date easily for SQL. For me I format the date for sql server using the following:
+					<ul>
+						<li>moment(startDate).format('YYYY-MM-DD HH:mm:00.0000000')</li>
+					</ul>
+				</li>
+				<li>
+					To nicely format dates for the user, use the following:
+					<ul>
+						<li>moment(startDate).format('MMM Do, YYYY hh:mm:ss a')</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

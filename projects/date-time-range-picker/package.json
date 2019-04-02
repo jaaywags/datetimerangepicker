@@ -1,0 +1,22 @@
+{
+  "name": "date-time-range-picker",
+  "version": "0.0.3",
+  "description": "This is a date time range picker. It is useful for running reports for records between two dates. It allows the user to easily navigate between years, months, days, hours, and minutes. It was developed for Angular 7.",
+  "author": "Jordan Wagner <jaaywags@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+	"bootstrap": "4.3.1",
+	"underscore": ">=1.9.0",
+	"moment": ">=2.24.0",
+	"@fortawesome/angular-fontawesome": ">=0.3.0",
+	"@fortawesome/fontawesome-svg-core": ">=1.2.17",
+	"@fortawesome/free-solid-svg-icons": ">=5.8.1",
+	"@fortawesome/free-regular-svg-icons": ">=5.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaaywags/datetimerangepicker.git"
+  }
+}

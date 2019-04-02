@@ -1,0 +1,163 @@
+.day-of-week {
+	width: calc(100% / 7);
+	display: inline-block;
+	width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+	margin: 2px;
+}
+.day-of-week:hover {
+}
+.days-of-week-label {
+    border-bottom: 1px solid #adadad;
+}
+.date-time-picker-container {
+	text-align: center;
+    top: 43px;
+	z-index: 1;
+    padding: 5px;
+    position: absolute;
+    background: #4c4c4c;
+    width: calc(38px * 7);
+    color: #ffffff;
+	height: 318px;
+	/* no highlight text */
+	-webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+.date-time-picker-container:after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 22px;
+    margin-left: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #4c4c4c transparent;
+}
+.numbered-day:not(.active) {
+	font-weight: 100;
+    color: #a0a0a0;
+}
+.numbered-day:hover {
+    outline: #c3c3c3 solid 1px;
+	background-color: #737373;
+}
+.current-day {
+	position: relative;
+}
+.beginning-end-of-range:not(.current-day) {
+	outline: #007bff solid 1px;
+}
+.beginning-end-of-range.current-day {
+	outline: #000000 solid 1px;
+	outline-offset: -3px;
+}
+.beginning-end-of-range.current-day:active:after {
+	outline: #ddeeff solid 1px;
+    outline-offset: -1px;
+}
+.beginning-end-of-range.current-day:hover:after {
+	border: #a1cfff solid 1px;
+    content: '';
+    width: 100%;
+    display: block;
+    height: 100%;
+    top: 0;
+    position: absolute;
+}
+.btn.btn-secondary.btn-sm {
+	border-radius: 0;
+}
+.day-in-range {
+	background-color: #88c1ff;
+	color: #000000;
+}
+.cursor-pointer,
+.hover-black:hover,
+.month,
+.current-month,
+.year,
+.current-year {
+	cursor: pointer;
+}
+.month-label {
+	width: 125px;
+    display: inline-block;
+}
+.toggle-time {
+	display: block;
+	padding: 5px;
+}
+.hover-black:hover {
+    color: black;
+}
+.hour-minute-container {
+	display: inline-block
+}
+.time-container {
+	margin-top: 30px;
+}
+.month {
+	border: solid 3px #4c4c4c;
+	width: 60px;
+	height: 60px;
+	margin: 2px;
+}
+.month:hover {
+	border: solid 3px #808080;
+}
+.current-month {
+	background-color: #007bff;
+	border: solid 3px #007bff;
+	width: 60px;
+	height: 60px;
+	margin: 2px;
+}
+.current-month:hover {
+    border: solid 3px #56a7ff;
+}
+.month.selected-month {
+	border: solid 3px #007bff;
+}
+.month.selected-month:hover {
+	border: solid 3px #7bbbff;
+}
+.current-month.selected-month {
+	outline: solid 3px black;
+    outline-offset: -6px;
+}
+
+.year {
+	border: solid 2px #4c4c4c;
+	margin: 1px;
+}
+.year:hover {
+	border: solid 2px #808080;
+}
+.current-year {
+	background-color: #007bff;
+	border: solid 2px #007bff;
+	margin: 1px;
+}
+.current-year:hover {
+    border: solid 2px #56a7ff;
+}
+.year.selected-year {
+	border: solid 2px #007bff;
+}
+.year.selected-year:hover {
+	border: solid 2px #7bbbff;
+}
+.current-year.selected-year {
+	outline: solid 2px black;
+    outline-offset: -4px;
+}
+.right-radius {
+	border-top-right-radius: 0.25rem !important;
+	border-bottom-right-radius: 0.25rem !important;
+}

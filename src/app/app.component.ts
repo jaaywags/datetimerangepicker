@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: []
 })
 export class AppComponent {
-  title = 'Angular-DateTimeRangePicker';
+	title = 'date-time-range-picker';
+	startDate: string;
+	endDate: string;
 }

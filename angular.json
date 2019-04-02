@@ -23,7 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -124,6 +125,41 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "date-time-range-picker": {
+      "root": "projects/date-time-range-picker",
+      "sourceRoot": "projects/date-time-range-picker/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/date-time-range-picker/tsconfig.lib.json",
+            "project": "projects/date-time-range-picker/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/date-time-range-picker/src/test.ts",
+            "tsConfig": "projects/date-time-range-picker/tsconfig.spec.json",
+            "karmaConfig": "projects/date-time-range-picker/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/date-time-range-picker/tsconfig.lib.json",
+              "projects/date-time-range-picker/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
