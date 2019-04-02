@@ -541,6 +541,8 @@ export class DateTimeRangePickerComponent implements OnInit {
 
 	public emitNewDate(): void {
 		if (!this.firstDay || !this.lastDay) {
+			this.startDate = '';
+			this.endDate = '';
 			return;
 		}
 

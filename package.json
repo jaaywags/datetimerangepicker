@@ -12,7 +12,6 @@
 	"npm-pack": "cd dist/date-time-range-picker && npm pack",
 	"package": "npm run build-lib && npm run npm-pack"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",

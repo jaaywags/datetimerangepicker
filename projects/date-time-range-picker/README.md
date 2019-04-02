@@ -5,61 +5,106 @@
 
 This is a date time range picker. It is useful for running reports for records between two dates. It allows the user to easily navigate between years, months, days, hours, and minutes. It was developed for Angular 7.
 
-### Demo
-![gif demp](https://media.giphy.com/media/65OQvQTWEQmdOocs76/giphy.gif)
+To install, run:
 
-### Example
+`npm install @jaaywags/datetimerange-picker`
+
+### Demo
+![gif demp](https://thumbs.gfycat.com/ChillyTotalHatchetfish-size_restricted.gif)
+[Live Demo](https://stackblitz.com/edit/jaaywagsdatetimerange-picker)
+
+### Implementation
 
 app.component.html
-
-    <lib-date-time-range-picker
-        (onDatePicked)="setDateRange($event)"
-        [startDate]="startDate"
-        [endDate]="endDate">
-    </lib-date-time-range-picker>
+```typescript
+<date-time-range-picker
+  [(startDate)]="startDate"
+  [(endDate)]="endDate">
+</date-time-range-picker>
+```
 
 app.component.ts
+```typescript
+import { Component } from '@angular/core';
 
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: []
+})
+export class AppComponent {
+  title = 'date-time-range-picker';
+  startDate: string; // start date will be stored here
+  endDate: string; // end date will be stored here
+}
+```
 
-    import { Component } from '@angular/core';
+app.module.ts
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { DateTimeRangePickerModule } from 'date-time-range-picker'; // import this line
 
-    @Component({
-        selector: 'app-root',
-        templateUrl: './app.component.html',
-        styleUrls: ['./app.component.css']
-    })
-    export class AppComponent {
-        title = 'date-time-range-picker';
-        startDate: string;
-        endDate: string;
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DateTimeRangePickerModule, // add this line
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
-        public setDateRange(dates: any): void {
-            this.startDate = dates.startDate;
-            this.endDate = dates.endDate;
-        }
-    }
+package.json
+```json
+"styles": [
+  "src/styles.css",
+  "node_modules/bootstrap/dist/css/bootstrap.min.css" # add this line (also remove this comment)
+],
+```
+
+Please install the following peer dependencies
+
+`npm install popper.js`
+
+`npm install bootstrap`
+
+`npm install @fortawesome/angular-fontawesome`
+
+`npm install @fortawesome/fontawesome-svg-core`
+
+`npm install @fortawesome/free-regular-svg-icons`
+
+`npm install @fortawesome/free-solid-svg-icons`
+
+`npm install jquery`
+
+`npm install moment`
+
+`npm install underscore`
 
 
 ### Explanation
 
 This is actually very easy to implement. Three attributes on the selector. One method in you component. Two properties in your component. That is all.
 
-Attributes
-
-* (onDatePicked)="setDateRange($event)"
-	* When the user selects the second date, the two dates will be emitted to the setDateRange() function in your component.
-	* The $event object will have two properties, startDate and endDate
-	* Dates are emitted in UTC
-
+Attributes:
 * [startDate]="startDate"
 	* This is a property in your component. Type string.
-	* Store the emitted startDate in here
-	* Should be type UTC
+	* When user selects the second date, this is updated.
+	* If you provide a default datetime, it should be type UTC
 
 * [endDate]="endDate"
 	* This is a property in your component. Type string.
-	* Store the emitted endDate in here
-	* Should be type UTC
+	* When user selects the second date, this is updated.
+	* If you provide a default datetime, it should be type UTC
 
 
 ### Notes
@@ -69,9 +114,12 @@ Attributes
 * Dates passed into the selectore should be in UTC
 
 
-## Built With
+### Built With
 
 * [BootStrap](www.getbootstrap.com)
 * [FontAwesome](fontawesome.com)
 * [Underscore.JS](underscorejs.org)
 * [moment.js](momentjs.com)
+
+
+### [My GitHub Repo](https://github.com/jaaywags/datetimerangepicker)

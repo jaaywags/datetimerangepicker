@@ -1,6 +1,6 @@
 {
-  "name": "date-time-range-picker",
-  "version": "0.0.3",
+  "name": "@jaaywags/datetimerange-picker",
+  "version": "0.0.4",
   "description": "This is a date time range picker. It is useful for running reports for records between two dates. It allows the user to easily navigate between years, months, days, hours, and minutes. It was developed for Angular 7.",
   "author": "Jordan Wagner <jaaywags@gmail.com>",
   "license": "MIT",
