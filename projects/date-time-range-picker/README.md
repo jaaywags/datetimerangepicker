@@ -10,7 +10,7 @@ To install, run:
 `npm install @jaaywags/datetimerange-picker`
 
 ### Demo
-![gif demp](https://thumbs.gfycat.com/ChillyTotalHatchetfish-size_restricted.gif)
+![gif demp](https://thumbs.gfycat.com/WavyDeafeningLeafwing-size_restricted.gif)
 [Live Demo](https://stackblitz.com/edit/jaaywagsdatetimerange-picker)
 
 ### Implementation
