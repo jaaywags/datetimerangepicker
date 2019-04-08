@@ -45,7 +45,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DateTimeRangePickerModule } from 'date-time-range-picker'; // import this line
+import { DateTimeRangePickerModule } from '@jaaywags/datetimerange-picker'; // import this line
 
 @NgModule({
   declarations: [
